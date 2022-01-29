@@ -21,15 +21,27 @@ def dictionary(way, a={}):
 
 
 def duplicate(a, b):
-    keys = list(a)
-    names = []
-    for i in a.keys():
-        names.append(i[i.rfind('\\')+1:])
+    copies = {}
+    names = {}
+    d = []
+    for key1 in a:
+        for key2 in a:
+            if key1 == key2:
+                pass
+            elif key1[key1.rfind('\\'):] == key2[key2.rfind('\\'):] and a[key1] == a[key2]:
+                if key1 in copies:
+                    continue
+                copies.update({key1: a[key1]})
 
-    print(keys)
-    print(names)
-
-
+    else:
+        for name in copies:
+            name = name[name.rfind('\\'):]
+            d.append(name)
+        for i in sorted(d):
+            names.update({i: copies[i]})
+        print(names)
+        print(*copies, sep='\n')
+        return copies
 
 
 def print_duplicate():
@@ -40,4 +52,3 @@ if __name__ == '__main__':
     p = path()
     s = dictionary(p)
     duplicate(s, p)
-
