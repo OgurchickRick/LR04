@@ -20,10 +20,8 @@ def dictionary(way, a={}):
     return a
 
 
-def duplicate(a, b):
+def duplicate(a):
     copies = {}
-    names = {}
-    d = []
     for key1 in a:
         for key2 in a:
             if key1 == key2:
@@ -32,23 +30,28 @@ def duplicate(a, b):
                 if key1 in copies:
                     continue
                 copies.update({key1: a[key1]})
-
     else:
-        for name in copies:
-            name = name[name.rfind('\\'):]
-            d.append(name)
-        for i in sorted(d):
-            names.update({i: copies[i]})
-        print(names)
-        print(*copies, sep='\n')
         return copies
 
 
-def print_duplicate():
-    pass
+def print_duplicate(copies):
+    hlam = []
+    for key1 in copies:
+        if key1 not in hlam:
+            print('\n', '-----', os.path.getsize(key1), 'байт -----')
+            print(key1)
+            for key2 in copies:
+                if key1 == key2:
+                    pass
+                elif key1[key1.rfind('\\'):] == key2[key2.rfind('\\'):] and copies[key1] == copies[key2]:
+                    print(key2)
+                    hlam.append(key2)
 
 
 if __name__ == '__main__':
     p = path()
     s = dictionary(p)
-    duplicate(s, p)
+    duplicate(s)
+    d = duplicate(s)
+    print(print_duplicate(d))
+
