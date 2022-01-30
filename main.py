@@ -1,5 +1,4 @@
 import os
-import collections
 
 
 def path():
@@ -34,7 +33,10 @@ def duplicate(a):
         return copies
 
 
+
 def print_duplicate(copies):
+    if copies == {}:
+        print('Нет дубликатов')
     hlam = []
     for key1 in copies:
         if key1 not in hlam:
@@ -53,5 +55,4 @@ if __name__ == '__main__':
     s = dictionary(p)
     duplicate(s)
     d = duplicate(s)
-    print(print_duplicate(d))
-
+    print_duplicate(d)
